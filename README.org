@@ -1,0 +1,19 @@
+#+Title: Build Prerequisites for LARF with Spack
+
+* Prepare
+
+#+begin_example
+  $ git clone ...
+  $ cd larf-spack
+  $ git submodule init
+  $ git submodule update
+#+end_example
+
+* Setup
+
+#+begin_example
+  $ source spack/share/spack/setup-env.sh
+  $ spack repo add repo 
+  ==> Created repo with namespace 'larf'.
+  $ spack list
+#+end_example
