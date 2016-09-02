@@ -8,16 +8,19 @@ class Bempp(Package):
     version("development", git = "https://github.com/bempp/bempp.git",
             branch="development")
 
-    
-    depends_on("cmake@3.6.1:", type="build")
-    depends_on("tbb")
-    depends_on("gmsh")
-    depends_on("python@2.7.12:")
-    depends_on("py-cython")
-    depends_on("py-numpy")
-    depends_on("py-scipy")
-    depends_on("py-setuptools")
-    depends_on("py-matplotlib")
+    extends('python')
+
+    depends_on("patchelf", type=("build", "link"))
+    depends_on("tbb", type=("build", "link", "run"))
+    depends_on("gmsh", type=("run"))
+    depends_on("python@2.7.12:", type=("build","link","run"))
+    depends_on("py-cython", type=("build","link","run"))
+    depends_on("py-numpy", type=("build","link","run"))
+    depends_on("py-scipy", type=("build","link","run"))
+    depends_on("py-setuptools", type=("build","link","run"))
+    depends_on("py-matplotlib", type=("build","link","run"))
+    depends_on("boost", type=("build", "link", "run"))
+    depends_on("eigen", type="build")
     #depends_on("paraview+python")
     
 

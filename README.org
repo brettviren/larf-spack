@@ -9,11 +9,70 @@
   $ git submodule update
 #+end_example
 
-* Setup
+* Setup Spack
 
 #+begin_example
-  $ source spack/share/spack/setup-env.sh
+  $ export SPACK_ROOT=`pwd`/spack
+  $ source $SPACK_ROOT/share/spack/setup-env.sh
   $ spack repo add repo 
   ==> Created repo with namespace 'larf'.
   $ spack list
 #+end_example
+
+* Prebuild
+
+Depending on how decrepit of a system you are building on you may need
+to get some basic build tools in place.  For example, on Scientific
+Linux 6, which is highly bit rotted at the time this sentence was
+written, the following is needed to bring it remotely into the modern
+era:
+
+#+begin_example
+  $ spack install curl
+  $ spack load curl
+
+  $ spack install cmake
+  $ spack load cmake
+
+  $ spack install gcc@5.4.0
+  $ spack load gcc
+  $ spack compiler find
+#+end_example
+
+* Install BEM++
+
+#+begin_example
+  $ spack install bempp
+#+end_example
+
+** Set up runtime
+
+#+begin_example
+  $ spack load -r bempp
+  $ python -c 'import bempp.api'
+#+end_example
+
+Note, if you had to build a compilerin the [[Prebuild]] section above, you
+must =spack load gcc= every time you create a new shell session and
+before loading =bempp=.
+
+* Install LARF
+
+#+begin_example
+  $ spack install py-larf
+#+end_example
+
+** Set up runtime
+
+#+begin_example
+  $ spack load -r py-larf
+  $ larf --help
+#+end_example
+
+** Update
+
+#+begin_example
+  $ spack uninstall py-larf
+  $ spack install py-larf
+#+end_example
+
